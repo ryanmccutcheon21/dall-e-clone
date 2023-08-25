@@ -31,9 +31,11 @@ router.route('/').post(async (req, res) => {
     try {
         // get data sent from frontend
         const { name, prompt, photo } = req.body
+
         // upload photo url to cloudinary
         const photoUrl = await cloudinary.uploader.upload(photo)
 
+        // create new post
         const newPost = await Post.create({
             name,
             prompt,
